@@ -276,5 +276,6 @@ onMounted(() => {
   gap: 1rem;
   justify-content: flex-end;
   margin-top: 1.5rem;
+  
 }
 </style>
