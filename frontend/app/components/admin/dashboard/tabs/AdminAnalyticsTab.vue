@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex items-center justify-between mb-6">
-      <h2 class="text-xl font-bold text-primary-950">Platform Analytics & KPIs</h2>
+      <h2 class="text-xl font-bold text-primary-950">Platform Analytics</h2>
     </div>
     
     <div v-if="statsLoading" class="grid md:grid-cols-2 gap-6 animate-pulse">

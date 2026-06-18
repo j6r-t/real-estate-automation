@@ -64,7 +64,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
     try:
         # Decode the token
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
+        email: str = payload.get("sub")#sub represent the issuer of the token
         if email is None:
             raise credentials_exception
         token_data = schemas.TokenData(email=email)

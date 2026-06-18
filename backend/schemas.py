@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr, field_validator
 from typing import List, Optional
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from decimal import Decimal
 from enum import Enum
 
@@ -184,6 +185,15 @@ class VisitResponse(BaseModel):
             return v
         from utils.security import decrypt_telegram_id
         return decrypt_telegram_id(v)
+
+    @field_validator("visit_date", "created_at", mode="after")
+    @classmethod
+    def ensure_timezoneUTC(cls, v: datetime) -> datetime:
+        print(f"DEBUG: ensure_timezoneUTC called for {v}")
+        if v and v.tzinfo is None:
+            return v.replace(tzinfo=timezone.utc)
+        return v
+
 
     class Config:
         from_attributes = True
